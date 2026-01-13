@@ -54,7 +54,8 @@
     /// </summary>
     /// <param name="value">Integer value to add to the queue</param>
     private void Enqueue(int value) {
-        _queue.Insert(0, value);
+        //enqueue has to add to the end not to the front
+        _queue.Add(value);
     }
 
     /// <summary>
@@ -65,9 +66,10 @@
     private int Dequeue() {
         if (_queue.Count <= 0)
             throw new IndexOutOfRangeException();
-
-        var value = _queue[1];
-        _queue.RemoveAt(1);
+        //Here we are trying to acess the index 1 which caused an out-of-range error
+        //Now we correctly take the first element (index 0) form the queue and remove it
+        var value = _queue[0];
+        _queue.RemoveAt(0);
         return value;
     }
 }
